@@ -3,19 +3,23 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
+import Image from "next/image";
+import image from "../../public/image.svg"
+import { useRouter } from "next/navigation";
+
 import {
-  Clock,
   CalendarDays,
   ShoppingBag,
   Settings,
   LogOut,
+  House,
 } from "lucide-react";
 
 const sidebarItems = [
   {
-    title: "Dashboard",
+    title: "Home",
     href: "/dashboard",
-    icon: Clock,
+    icon: House,
   },
   {
     title: "Attendance",
@@ -36,11 +40,13 @@ const sidebarItems = [
 
 export function Sidebar() {
   const pathname = usePathname();
+  const router = useRouter();
 
   return (
     <div className="flex flex-col h-screen bg-gray-900 text-white w-64">
-      <div className="p-4">
-        <h1 className="text-2xl font-bold">TimeTracker</h1>
+      <div className="flex items-center p-4">
+        <Image className="h-12 w-12" src={image} alt="logo"></Image>
+        <h1 className="text-2xl font-bold">Ajeevan<span className="text-violet-600">Tech</span></h1>
       </div>
       <nav className="flex-1 p-4">
         <ul className="space-y-2">
@@ -66,7 +72,7 @@ export function Sidebar() {
         </ul>
       </nav>
       <div className="p-4">
-        <button className="flex items-center space-x-3 p-3 w-full rounded-lg hover:bg-gray-800 transition-colors">
+        <button onClick={()=>{router.push("/auth/login")}} className="flex items-center space-x-3 p-3 w-full rounded-lg hover:bg-gray-800 transition-colors">
           <LogOut className="w-5 h-5" />
           <span>Logout</span>
         </button>

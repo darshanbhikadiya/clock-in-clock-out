@@ -22,7 +22,7 @@ export default function SignupPage() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50">
       <Card className="w-[400px]">
-        <CardHeader>
+        <CardHeader className="bg-white">
           <CardTitle className="text-2xl text-center">Sign Up</CardTitle>
         </CardHeader>
         <CardContent>
@@ -57,7 +57,8 @@ export default function SignupPage() {
                 required
               />
             </div>
-            <Button type="submit" className="w-full">
+            {/* <Button type="submit" className="w-full"> */}
+            <Button type="submit" className="w-full h-auto relative z-0 rounded-lg transition-all duration-300 hover:scale-95">
               Sign Up
             </Button>
             <p className="text-center text-sm">
