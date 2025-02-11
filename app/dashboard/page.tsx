@@ -493,7 +493,7 @@ import {
 import { ChevronDown, ChevronRight } from "lucide-react";
 import Clock from "../clock/page";
 import { useAttendance } from "@/lib/AttendanceContext";
-import data from "../../data.json"
+import data from "../../data/data.json"
 
 interface TimeLog {
   clockIn: Date;
