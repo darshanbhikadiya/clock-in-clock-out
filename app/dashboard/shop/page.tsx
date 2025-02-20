@@ -6,11 +6,16 @@ import { Button } from "@/components/ui/button";
 
 import { useAttendance } from "@/lib/AttendanceContext";
 
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "@/app/redux/store";
+import { add, remove } from "@/app/redux/cartSlice";
+
 const rewards = [
   {
     id: 1,
     name: "Spotify Premium (1 Month)",
     points: 20,
+    qty:1,
     actualPrice: "$9.99",
     image: "https://images.unsplash.com/photo-1614680376593-902f74cf0d41?w=400",
   },
@@ -18,6 +23,7 @@ const rewards = [
     id: 2,
     name: "Amazon Gift Card",
     points: 50,
+    qty:1,
     actualPrice: "$25",
     image: "https://images.unsplash.com/photo-1622547748225-3fc4abd2cca0?w=400",
   },
@@ -25,6 +31,7 @@ const rewards = [
     id: 3,
     name: "Netflix Subscription",
     points: 40,
+    qty:1,
     actualPrice: "$15.99",
     image: "https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?w=400",
   },
@@ -32,6 +39,7 @@ const rewards = [
     id: 4,
     name: "Disney Subscription",
     points: 80,
+    qty:1,
     actualPrice: "$95.99",
     image: "https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?w=400",
   }
@@ -101,11 +109,16 @@ export default function ShopPage() {
 
     return { totalHours: hours, totalMinutes: minutes };
   };
+
   const { totalHours, totalMinutes } = useMemo(calculateTotalHours, [dayLogs]);
   const points = Math.floor(totalHours * 5);
 
 
 
+  //redux use karu che
+  const dispatch = useDispatch();
+
+ 
   return (
     <div className="p-8">
       <div className="mb-8">
@@ -156,6 +169,13 @@ export default function ShopPage() {
                     Redeem
                   </Button>
                 )}
+                <Button
+                    className="w-full mt-2"
+                    disabled={userPoints < reward.points}
+                    onClick={()=>{dispatch(add(reward))}}
+                  >
+                    Add to cart
+                  </Button>
               </CardContent>
             </Card>
           );
